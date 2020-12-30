@@ -21,34 +21,46 @@ class _HomeState extends State<Home> {
     });
   }
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.red,
+        title: Text('ImagetoText'),
+        centerTitle: true,
+        elevation: 0,
+      ),
       body: Column(
         children: [
           isLoaded
-              ? Center(
-                  child: Container(
-                    height: 200,
-                    width: 200,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: FileImage(pickedImage), fit: BoxFit.cover)),
+              ? Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                    child: Container(
+                      
+                      height: MediaQuery.of(context).size.height/1.6,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: FileImage(pickedImage), fit: BoxFit.cover)),
+                    ),
                   ),
-                )
-              : Container(),
+              )
+              : Container(
+                   height: MediaQuery.of(context).size.height/1.6,
+                      width: MediaQuery.of(context).size.width,
+                      
+              ),
           SizedBox(
             height: 10,
           ),
-          RaisedButton(
-            onPressed: pickImage,
-            child: Text('Pick an image'),
-          ),
+          
           SizedBox(height: 10),
           MaterialButton(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            color: Colors.amberAccent,
             height: 50,
-            
+            minWidth: MediaQuery.of(context).size.width/1.5,
             onPressed: () async {
               FirebaseVisionImage image =
                   FirebaseVisionImage.fromFile(pickedImage);
@@ -57,18 +69,28 @@ class _HomeState extends State<Home> {
               VisionText text = await readText.processImage(image);
               a = text.text;
               showDialog(
-                context: context,
-                builder: (context) {
-                  return Dialog(
-                    child: Text(a),
-                  );
-                }
-              );
+                  context: context,
+                  builder: (context) {
+                    return Dialog(
+                      
+                      child: Container(
+                        height: MediaQuery.of(context).size.height/2,
+                        child: Center(child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(a,style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                        ))),
+                    );
+                  });
             },
-            child: Text('Read Text'),
+            child: Text('Read Text',style: TextStyle(fontSize: 20),),
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: pickImage,
+        icon: Icon(Icons.image),
+        backgroundColor: Colors.amberAccent,
+        label: Text('Pick Image')),
     );
   }
 }
