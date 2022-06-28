@@ -34,33 +34,32 @@ class _HomeState extends State<Home> {
         children: [
           isLoaded
               ? Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
                     child: Container(
-                      
-                      height: MediaQuery.of(context).size.height/1.6,
+                      height: MediaQuery.of(context).size.height / 1.6,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: FileImage(pickedImage), fit: BoxFit.cover)),
+                              image: FileImage(pickedImage),
+                              fit: BoxFit.cover)),
                     ),
                   ),
-              )
+                )
               : Container(
-                   height: MediaQuery.of(context).size.height/1.6,
-                      width: MediaQuery.of(context).size.width,
-                      
-              ),
+                  height: MediaQuery.of(context).size.height / 1.6,
+                  width: MediaQuery.of(context).size.width,
+                ),
           SizedBox(
             height: 10,
           ),
-          
           SizedBox(height: 10),
           MaterialButton(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             color: Colors.amberAccent,
             height: 50,
-            minWidth: MediaQuery.of(context).size.width/1.5,
+            minWidth: MediaQuery.of(context).size.width / 1.5,
             onPressed: () async {
               FirebaseVisionImage image =
                   FirebaseVisionImage.fromFile(pickedImage);
@@ -72,25 +71,107 @@ class _HomeState extends State<Home> {
                   context: context,
                   builder: (context) {
                     return Dialog(
-                      
                       child: Container(
-                        height: MediaQuery.of(context).size.height/2,
-                        child: Center(child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(a,style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-                        ))),
+                          height: MediaQuery.of(context).size.height / 2,
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              a,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ))),
                     );
                   });
             },
-            child: Text('Read Text',style: TextStyle(fontSize: 20),),
+            child: Text(
+              'Read Text',
+              style: TextStyle(fontSize: 20),
+            ),
           ),
         ],
       ),
+      persistentFooterButtons: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          //  crossAxisAlignment: CrossAxisAlignment.,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 18.0, right: 18),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Nitesh Dhawan',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                  Text(
+                    'Sanat Mahajan',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Roboto',
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 18.0, right: 18),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Akshat Singh',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                  Text(
+                    'Kritarth Gupta',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 18.0, right: 18),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Manan Ghai',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                  Text(
+                    'Kunal Kashyap',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        )
+      ],
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: pickImage,
-        icon: Icon(Icons.image),
-        backgroundColor: Colors.amberAccent,
-        label: Text('Pick Image')),
+          onPressed: pickImage,
+          icon: Icon(Icons.image),
+          backgroundColor: Colors.amberAccent,
+          label: Text('Pick Image')),
     );
   }
 }
